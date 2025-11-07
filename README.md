@@ -1,7 +1,7 @@
 <h1 align="center">nf-neuro Documentation</h1>
 
 <p align="center">
-<img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/scilus/nf-neuro-documentation/deploy.yml?style=for-the-badge&labelColor=363a4f&color=8aadf4">
+<img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/nf-neuro/website/deploy.yml?style=for-the-badge&labelColor=363a4f&color=8aadf4">
 </p>
 
 ## How to contribute to the `nf-neuro` documentation.
@@ -10,7 +10,7 @@
 
 First, clone the repository:
 ```bash
-git clone https://github.com/scilus/nf-neuro-documentation.git
+git clone https://github.com/nf-neuro/website.git
 ```
 Then, open the repository in VS Code and select open in container. VS Code will open a `Simple Browser` tab previewing your local changes. You are all set!
 
@@ -19,7 +19,7 @@ Then, open the repository in VS Code and select open in container. VS Code will 
 To build the website locally, you need to install the `npm` package manager and `Node.js`. If you do not have it installed, follow the instructions on the official website: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm.
 Once installed, git clone the `nf-neuro-documentation` repo and `cd` into it:
 ```bash
-git clone https://github.com/scilus/nf-neuro-documentation.git
+git clone https://github.com/nf-neuro/website.git
 cd nf-neuro-documentation/
 ```
 Use `npm` to install the required dependencies:
@@ -34,7 +34,7 @@ Open the `localhost` link that appeared in your terminal, it should open a brows
 
 ## Github pages deployment
 
-The documentation website is deployed on [scilus.github.io/nf-neuro](https://scilus.github.io/nf-neuro). To do so, the `github workflow` must run on the [main nf-neuro repository](https://github.com/scilus/nf-neuro). It is achieved using the `deploy.yml` **callable workflow** located in this repository and calling it in workflows located in the nf-neuro main repository. This way, the workflow runs in the correct context and can deploy correctly to the prescribed endpoint.
+The documentation website is deployed on [scilus.github.io/nf-neuro](https://scilus.github.io/nf-neuro). To do so, the `github workflow` must run on the [main nf-neuro repository](https://github.com/nf-neuro/modules). It is achieved using the `deploy.yml` **callable workflow** located in this repository and calling it in workflows located in the nf-neuro main repository. This way, the workflow runs in the correct context and can deploy correctly to the prescribed endpoint.
 
 ## License
 
