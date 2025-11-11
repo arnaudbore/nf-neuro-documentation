@@ -8,8 +8,8 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-    site: "https://scilus.github.io",
-    base: "/nf-neuro",
+    site: "https://nf-neuro.github.io",
+    base: "/",
     trailingSlash: 'never',
     integrations: [
         starlight({
@@ -45,7 +45,7 @@ export default defineConfig({
                 Hero: './src/components/newHero.astro',
             },
             social: [
-                { icon: "github", label: "nf-neuro", href: 'https://github.com/scilus/nf-neuro.git'}
+                { icon: "github", label: "nf-neuro", href: 'https://github.com/nf-neuro/modules.git'}
             ],
             sidebar: [
                 { label: 'Welcome', slug: 'welcome' },

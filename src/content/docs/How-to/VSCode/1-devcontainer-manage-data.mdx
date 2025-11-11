@@ -7,7 +7,7 @@ description: Access your data from inside the devcontainer.
 ### Accessing your data
 
 In the `devcontainer`, you have access to everything located **inside your workspace**. For you, this means
-everything that comes bundled in the `scilus/nf-neuro-tutorial` repository. You can call commands to look
+everything that comes bundled in the `nf-neuro/tutorial` repository. You can call commands to look
 outside this directory, like `ls /` or `ls ~`, but you won't find what is on your computer. This is called
 **isolation** and is a core feature of containers. It does limit you, but it also means that you can break things
 (like deleting everything under `/`) without breaking your computer. Good news though, there are ways to give access
@@ -15,10 +15,10 @@ to your data to the container.
 
 #### Small dataset
 
-The simpler way is to **copy your data** in the <span class="dark:text-blue-300 text-blue-500">nf-neuro-tutorial</span>
+The simpler way is to **copy your data** in the <span class="dark:text-blue-300 text-blue-500">tutorial</span>
 directory on your computer. If you used **VSCode** to clone the repository, it's the path you chose previously.
 This will make your data instantly available inside the `devcontainer`, since **VScode connects your workspace**,
-available in the <span class="dark:text-blue-300 text-blue-500">editor</span>, to the <span class="dark:text-blue-300 text-blue-500">nf-neuro-tutorial</span>
+available in the <span class="dark:text-blue-300 text-blue-500">editor</span>, to the <span class="dark:text-blue-300 text-blue-500">tutorial</span>
 directory at launch. This way, any modifications made from your computer reflect instantly inside the container (and
 vice-versa).
 

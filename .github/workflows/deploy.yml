@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
         with:
-          repository: scilus/nf-neuro
+          repository: nf-neuro/modules
           ref: main
           path: nf-neuro
           fetch-depth: 0
@@ -67,7 +67,7 @@ jobs:
       - name: Checkout website code
         uses: actions/checkout@v4
         with:
-          repository: scilus/nf-neuro-documentation
+          repository: nf-neuro/website
 
       - name: Download components markdown
         uses: actions/download-artifact@v4
