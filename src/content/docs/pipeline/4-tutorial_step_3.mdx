@@ -69,7 +69,7 @@ After importing the module, you can then use it in your workflow as follows:
 ### 3. Understand input data specific to the module.
 
 Before using the `RECONST_DTIMETRICS` module, it's essential to understand the file types it expects as input. 
-For this, please refer to the [API Documentation](/nf-neuro/api/modules/reconst/dtimetrics). 
+For this, please refer to the [API Documentation](/api/modules/reconst/dtimetrics). 
 
 The `Inputs` section module shows that 4 input files are required (excluding meta):
 
@@ -185,7 +185,7 @@ taking into account the management of an optional file. The next step is to conf
 
 Each module may require specific parameters. 
 To find the required **parameters** and their **default values**, check the `Arguments` section of the module supplied by 
-the [API Documentation](/nf-neuro/api/modules/reconst/dtimetrics).
+the [API Documentation](/api/modules/reconst/dtimetrics).
 
 In the **nextflow.config** file, you will have to set these parameters using the **process selector** (`withName`) that
 links the `ext.` parameter to the `params.` parameter.

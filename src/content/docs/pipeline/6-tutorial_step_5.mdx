@@ -165,7 +165,7 @@ The subworkflow will be installed in the `./subworkflows/nf-neuro/` directory.
 
 ### 2. Add new data in the input pipeline structure
 
-To include a T1w image in the pipeline, we will follow the same approach from [**Part 2**](/nf-neuro/pipeline/tutorial_step_2) as we did for the DWI images.
+To include a T1w image in the pipeline, we will follow the same approach from [**Part 2**](/pipeline/tutorial_step_2) as we did for the DWI images.
 The required steps are:  
 
     <Steps>
@@ -210,9 +210,9 @@ The required steps are:
 
 #### b. Prepare structure input for the subworkflow
 
-    As with modules, the API documentation also lists [**subworkflows**](/nf-neuro/api/categories), 
+    As with modules, the API documentation also lists [**subworkflows**](/api/categories), 
     providing information on **Inputs**, **Outputs** and the module list used in the 
-    **Components** section:  [PREPROC_T1](/nf-neuro/api/subworkflows/preproc_t1/).
+    **Components** section:  [PREPROC_T1](/api/subworkflows/preproc_t1/).
 
     The `PREPROC_T1` subworkflow has 7 input channels defined, with only `ch_image` being mandatory.
     Just like using an empty list for modules, using an **empty channel** allows the 
@@ -248,7 +248,7 @@ The required steps are:
 Configuring a subworkflow requires understanding the modules used within the subworkflow and their associated parameters.
 To properly use them, we will need to configure each of the module similarly to what we did for `RECONST_DTIMETRICS`.
 
-The [`PREPROC_T1`](/nf-neuro/api/subworkflows/preproc_t1/) API documentation 
+The [`PREPROC_T1`](/api/subworkflows/preproc_t1/) API documentation 
 lists the modules included in the subworkflow in the **Components** section: 
 
     <html>

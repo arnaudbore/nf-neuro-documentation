@@ -14,7 +14,7 @@ contributors**. This infrastructure is composed of three elements :
 
 <Steps>
 1. A **webserver** hosting data packages, **versioned using the [DVC](https://dvc.org/) framework**.
-2. A **Nextflow subworkflow**, [LOAD_TEST_DATA](/nf-neuro/api/subworkflows/load_test_data), 
+2. A **Nextflow subworkflow**, [LOAD_TEST_DATA](/api/subworkflows/load_test_data), 
    that downloads, caches and unpacks those data packages.
 3. A **VS Code extension**, [Test Data Explorer](https://marketplace.visualstudio.com/items?itemName=nf-neuro.test-data-treeview),
    to browse test data packages, inspect their content and download them.
@@ -77,7 +77,7 @@ options below :
 
 ## **LOAD_TEST_DATA** subworkflow
 
-The [LOAD_TEST_DATA](/nf-neuro/api/subworkflows/load_test_data) subworkflow not only downloads and unpacks test data archives, but also
+The [LOAD_TEST_DATA](/api/subworkflows/load_test_data) subworkflow not only downloads and unpacks test data archives, but also
 **caches them locally** to prevent unnecessary re-downloads and preserve bandwidth. To use it, include it in your **_main.nf_** subworkflow
 file or **_main.nf.test_** test file :
 

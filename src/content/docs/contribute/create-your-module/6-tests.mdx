@@ -20,8 +20,8 @@ are exceptions.
 ## Setup before tests
 
 Setup sections are used to prepare data before test cases are run, to download data, prepare algorithms and generate awaited
-return values. In **nf-neuro**, test datasets are provided via the [LOAD_TEST_DATA](/nf-neuro/api/subworkflows/load_test_data)
-subworkflow (refer to [this section](/nf-neuro/contribute/create-your-module/7-test-data) to learn how to find packages).
+return values. In **nf-neuro**, test datasets are provided via the [LOAD_TEST_DATA](/api/subworkflows/load_test_data)
+subworkflow (refer to [this section](/contribute/create-your-module/7-test-data) to learn how to find packages).
 Once you've selected the archives and files needed, add a `setup` section before the test section:
 
 ```groovy {"1": 2,3} {"2": 4-9}
@@ -220,7 +220,7 @@ nextflow_process {
 The **_nextflow.config_** file does not exist by default, so you will have to
 create it if needed. This is not mandatory, except if you have defined
 optional parameters with `task.ext` and want to alter their values for some
-test cases. Refer to [this section](/nf-neuro/contribute/create-your-module/3-configuration) to
+test cases. Refer to [this section](/contribute/create-your-module/3-configuration) to
 see how to scope those parameters to specific tests using `selectors`.
 
 :::tip[Layered configuration]

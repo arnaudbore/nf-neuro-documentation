@@ -49,7 +49,7 @@ A citation to **nf-neuro** for this tutorial is also appreciated:
 
 You need to work on a pipeline that follows the `nf-core` conventions and have access to the [`nf-core` tools commands](https://nf-co.re/docs/nf-core-tools/).
 
-For the purpose of this walkthrough, we will reused the completed pipeline from the tutorial [Your pipeline from A to Z](/nf-neuro/pipeline/2-tutorial_explore/).
+For the purpose of this walkthrough, we will reused the completed pipeline from the tutorial [Your pipeline from A to Z](/pipeline/2-tutorial_explore/).
 
 :::caution[If you did not complete the pipeline creation tutorial]
 Don't worry! You can still catch up by following the [setup section](/pipeline/1-setup/).
@@ -232,7 +232,7 @@ Your MultiQC module is now up-and-running for our neuroimaging needs!
 
 :::note[If you do not already have QC within your modules]
 The instructions for how to create QC files within your modules have
-been deeply covered in the [create your own module tutorial](/nf-neuro/contribute/create-your-module/2-main/#including-quality-control-qc-steps-within-your-module).
+been deeply covered in the [create your own module tutorial](/contribute/create-your-module/2-main/#including-quality-control-qc-steps-within-your-module).
 The current section will assume QC is already available within your
 modules, and will cover how to generate and collect QC files during
 pipeline execution. 
@@ -269,7 +269,7 @@ top of your `PREPROC_DIFF` `./subworkflows/local/preproc_diff/main.nf`, right be
     ```
 
 3. Once all of our empty channels are defined, we can start populating them!
-If you look at the outputs of `RECONST_DTIMETRICS` (either in the [API documentation](/nf-neuro/api/modules/reconst/dtimetrics)
+If you look at the outputs of `RECONST_DTIMETRICS` (either in the [API documentation](/api/modules/reconst/dtimetrics)
 or directly in the `main.nf`), you will see an emitted channel called `mqc`. This
 channel contains the QC files generated within the module. Let's append this
 channel to our previously empty channel.
@@ -558,7 +558,7 @@ the title of our section containing our FA QC image and its description.
     To facilitate and harmonize section descriptions across pipelines derived from
     `nf-neuro`, we supply example description sections for each module type containing
     builtin QC. You can see the list in the `multiqc_config.yml` file in the [`nf-neuro`
-    repository](https://github.com/nf-neuro/modules/blob/main/assets/multiqc_config.yml).
+    repository](https://github.com/modules/blob/main/assets/multiqc_config.yml).
     :::
 
 5. In order for MultiQC to fetch the right files for each section, you need to specify which
