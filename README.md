@@ -34,7 +34,7 @@ Open the `localhost` link that appeared in your terminal, it should open a brows
 
 ## Github pages deployment
 
-The documentation website is deployed on [scilus.github.io/nf-neuro](https://scilus.github.io/nf-neuro). To do so, the `github workflow` must run on the [main nf-neuro repository](https://github.com/nf-neuro/modules). It is achieved using the `deploy.yml` **callable workflow** located in this repository and calling it in workflows located in the nf-neuro main repository. This way, the workflow runs in the correct context and can deploy correctly to the prescribed endpoint.
+The documentation website is deployed on [nf-neuro.github.io](https://nf-neuro.github.io). To do so, the `github workflow` must run on the [main nf-neuro repository](https://github.com/nf-neuro/modules). It is achieved using the `deploy.yml` **callable workflow** located in this repository and calling it in workflows located in the nf-neuro main repository. This way, the workflow runs in the correct context and can deploy correctly to the prescribed endpoint.
 
 ## License
 

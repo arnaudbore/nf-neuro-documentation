@@ -51,3 +51,8 @@
 .inline-code code:last-child{
 	padding-left: 0;
 }
+
+starlight-tabs {
+	background-color: var(--color-gray-700);
+	padding: 10px;
+}

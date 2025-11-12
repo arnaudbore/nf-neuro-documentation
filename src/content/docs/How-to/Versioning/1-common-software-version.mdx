@@ -93,25 +93,25 @@ $FASTSURFER_HOME/run_fastsurfer.sh --version
 ### **Freesurfer**
 
 ```bash
-mri_convert -version \| grep "freesurfer" \| sed -E 's/.* ([0-9.]+).*/\\1/'
+mri_convert -version | grep "freesurfer" | sed -E 's/.* ([0-9.]+).*/\\1/'
 ```
 
 ### **FSL**
 
 ```bash
-flirt -version 2>&1 \| sed -E 's/.*version ([0-9.]+).*/\\1/'
+flirt -version 2>&1 | sed -E 's/.*version ([0-9.]+).*/\\1/'
 ```
 
 ### **ImageMagick**
 
 ```bash
-convert -version \| grep "Version:" \| sed -E 's/.*ImageMagick ([0-9.-]+).*/\\1/'
+convert -version | grep "Version:" | sed -E 's/.*ImageMagick ([0-9.-]+).*/\\1/'
 ```
 
 ### **Mrtrix3**
 
 ```bash
-mrinfo -version 2>&1 \| grep "== mrinfo" \| sed -E 's/== mrinfo ([0-9.]+).*/\\1/'
+mrinfo -version 2>&1 | grep "== mrinfo" | sed -E 's/== mrinfo ([0-9.]+).*/\\1/'
 ```
 
 ### **nii2dcm**
@@ -123,9 +123,9 @@ convert_nii2dcm.py -v
 ### **Scilpy**
 
 ```bash title="scilpy < 2.2.0"
-pip list --disable-pip-version-check --no-python-version-warning \| grep scilpy \| tr -s ' ' \| cut -d' ' -f2
+pip list --disable-pip-version-check --no-python-version-warning | grep scilpy | tr -s ' ' | cut -d' ' -f2
 ```
 
 ```bash title="scilpy >= 2.2.0"
-uv pip list --disable-pip-version-check --no-python-version-warning \| grep scilpy \| tr -s ' ' \| cut -d' ' -f2
+uv pip -q -n list | grep scilpy | tr -s ' ' | cut -d' ' -f2
 ```

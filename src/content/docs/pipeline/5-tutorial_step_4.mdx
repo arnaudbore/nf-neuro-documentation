@@ -154,7 +154,7 @@ In this tutorial, you need to remove a directory, like this `./modules/[...]`.
 
 The purpose of adding this module is to denoise the DWI image before computing the DTI metrics.
 To do this, simply repeat the sequence of sub-steps seen in 
-[**Part 3: Use and configure a nf-neuro module**](/nf-neuro/pipeline/tutorial_step_3).
+[**Part 3: Use and configure a nf-neuro module**](/pipeline/tutorial_step_3).
 
 <Steps>
 
@@ -230,7 +230,7 @@ To do this, simply repeat the sequence of sub-steps seen in
     As in this tutorial, you might have one process that only needs the dwi file, another that needs the bval 
     and bvec files, and a third that needs all of them. 
 
-3. Configure the denosing module in the `nextflow.config` using the [API Documentation](/nf-neuro/api/modules/denoising/mppca) as a reference.
+3. Configure the denosing module in the `nextflow.config` using the [API Documentation](/api/modules/denoising/mppca) as a reference.
 
 4. Adapt the input for `RECONST_DTIMETRICS` module to attach it after the newly included denoised DWI module, reusing its outputs as inputs.
 
@@ -288,7 +288,7 @@ To do this, simply repeat the sequence of sub-steps seen in
         Assign the output from `DENOISING_MPPCA` to a new channel named `ch_dwi_denoised`.
         Specifically, it's taking the `image` output.
 
-        The **name** of a module's **output(s)** can be determined via the [API Documentation](/nf-neuro/api/categories) in the `Outputs` section.
+        The **name** of a module's **output(s)** can be determined via the [API Documentation](/api/categories) in the `Outputs` section.
 
     <li>`.join(ch_dwi_bvalbvec.bvs_files)`: merges it with `bval/bvec` data</li>
     
@@ -300,7 +300,7 @@ To do this, simply repeat the sequence of sub-steps seen in
     <li>`.map{ it + [[]] }`:  Adds an empty list `([])` to each input tuple.</li>
     
         After joining, we use `map` to transform each item in the channel, and adding an empty list `[[]]`,
-        for the optional mask input. The `map` operation is similar to the one we did for the DTI module in [**Part 2**](/nf-neuro/pipeline/tutorial_step_2).
+        for the optional mask input. The `map` operation is similar to the one we did for the DTI module in [**Part 2**](/pipeline/tutorial_step_2).
     </html>
     :::
 </Steps>

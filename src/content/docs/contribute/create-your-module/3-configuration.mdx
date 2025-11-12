@@ -13,7 +13,7 @@ specificities :
 1. **They are _optional_ by default**. If a `parameter` is not defined, <code class="dark:text-slate-200 text-slate-700">task.ext.parameter</code>
    will return the value <code class="dark:text-blue-300 text-blue-500">null</code>.
 2. **They are _static_**. Their value is bound to the module's name. _Dynamic parameters_ have to be defined using
-   [inputs](/nf-neuro/create-your-module/2-main#the-input-section).
+   [inputs](/create-your-module/2-main#the-input-section).
 </Steps>
 
 The guidelines below present how to define those parameters, using the **DENOISING_NLMEANS** module example.
@@ -114,5 +114,5 @@ script:
 :::
 
 With that, the module can be configured to the full extent of the command line it encloses. You will see how to access
-those parameters in the [subworkflow configuration](/nf-neuro/create-your-subworkflow/3-configuration) section. For now,
+those parameters in the [subworkflow configuration](/create-your-subworkflow/3-configuration) section. For now,
 **it's time to setup a container to host your dependencies, so users don't have to install them by themselves**.
