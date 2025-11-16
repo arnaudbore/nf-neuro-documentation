@@ -13,15 +13,15 @@ const pipelines = pipelinesEntries.map(entry => entry.data);
     <!-- Right fade overlay -->
     <div class="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white dark:from-gray-900 to-transparent z-10 pointer-events-none"></div>
     
-    <div class="flex gap-8 w-max animate-infinite-scroll">
+    <div class="flex gap-8 w-max animate-infinite-scroll scroller">
         <div class="flex gap-8">
             {pipelines.map((pipeline) => (
-                <PipelineCard pipeline={pipeline} class="flex-shrink-0" />
+                <PipelineCard pipeline={pipeline} class="flex-shrink-0 pipeline-card-hover" />
             ))}
         </div>
         <div class="flex gap-8" aria-hidden="true">
             {pipelines.map((pipeline) => (
-                <PipelineCard pipeline={pipeline} class="flex-shrink-0" />
+                <PipelineCard pipeline={pipeline} class="flex-shrink-0 pipeline-card-hover" />
             ))}
         </div>
     </div>

@@ -14,6 +14,7 @@ export interface GitHubRepository {
   stargazers_count: number;
   forks_count: number;
   updated_at: string;
+  default_branch: string;
   license: {
     key: string;
     name: string;
@@ -190,4 +191,39 @@ export async function fetchLatestRelease(
   } catch {
     return null;
   }
+}
+
+/**
+ * Get the license URL for a repository, preferring the repository's LICENSE file
+ * @param org Organization name
+ * @param repo Repository name
+ * @param branch Default branch name
+ * @param fallbackUrl Generic license URL from repository metadata
+ * @returns URL to the license (repository file or generic)
+ */
+export async function getLicenseUrl(
+  org: string,
+  repo: string,
+  branch: string,
+  fallbackUrl: string
+): Promise<string> {
+  const possibleLicenseFiles = [
+    'LICENSE',
+    'LICENSE.md',
+    'LICENSE.txt',
+    'LICENCE',
+    'LICENCE.md',
+    'LICENCE.txt',
+    'license',
+    'license.md',
+    'license.txt'
+  ];
+
+  for (const filename of possibleLicenseFiles) {
+    if (await fileExists(org, repo, filename)) {
+      return `https://github.com/${org}/${repo}/blob/${branch}/${filename}`;
+    }
+  }
+
+  return fallbackUrl;
 }

@@ -9,6 +9,7 @@ export const collections = {
 		schema: z.object({
 			name: z.string(),
 			organisation: z.string(),
+			documentation: z.string().optional(),
 		}),
 	}),
 };
