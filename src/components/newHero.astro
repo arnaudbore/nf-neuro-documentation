@@ -2,9 +2,12 @@
 import { Image } from 'astro:assets';
 import { PAGE_TITLE_ID } from '../../node_modules/@astrojs/starlight/constants';
 import LinkButton from '../../node_modules/@astrojs/starlight/user-components/LinkButton.astro';
+import PipelinesScroller from './PipelinesScroller.astro';
 
 const { data } = Astro.locals.starlightRoute.entry;
 const { title = data.title, tagline, image, actions = [] } = data.hero || {};
+
+const pipeline_tagline = "Pipelines powered by nf-neuro"
 
 const imageAttrs = {
 	loading: 'eager' as const,
@@ -60,13 +63,22 @@ if (image) {
 				</div>
 			)
 		}
+		<div class="sl-flex flex-row w-full">
+			<div class="flex-1"><h1><b>{pipeline_tagline}</b></h1></div>
+			<div class="flex-none px-15">
+				<LinkButton href="/pipelines" variant="minimal" icon="right-arrow">
+					See more
+				</LinkButton>
+			</div>
+		</div> 
+		<PipelinesScroller />
 	</div>
 </div>
 
 <style>
 	.hero {
 		align-items: center;
-		gap: 1rem;
+		gap: 0.5rem;
 		padding-bottom: 1rem;
 	}
 
@@ -80,7 +92,7 @@ if (image) {
 
 	.stack {
 		flex-direction: column;
-		gap: clamp(1.5rem, calc(1.5rem + 1vw), 2rem);
+		gap: clamp(2.0rem, calc(2.0rem + 1vw), 2.5rem);
 		text-align: center;
 	}
 
@@ -117,6 +129,7 @@ if (image) {
 			grid-template-columns: 7fr 4fr;
 			gap: 3%;
 			padding-block: clamp(2.5rem, calc(1rem + 10vmin), 10rem);
+			padding-block-start: clamp(1.5rem, calc(1rem + 1vmin), 2rem);
 		}
 
 		.hero > img,
@@ -133,8 +146,12 @@ if (image) {
 			align-items: flex-start;
 		}
 
+		.copy.w-full {
+			align-items: center;
+		}
+
 		.actions {
-			justify-content: flex-start;
+			justify-content: space-evenly;
 		}
 	}
 </style>

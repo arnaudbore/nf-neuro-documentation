@@ -5,6 +5,17 @@
 @import "tailwindcss/utilities.css" layer(utilities);
 
 @theme inline {
+    --animate-infinite-scroll: infinite-scroll 30s linear infinite;
+
+    @keyframes infinite-scroll {
+        from {
+            transform: translateX(0);
+        }
+        to {
+            transform: translateX(-50%);
+        }
+    }
+
     /* On the website, we accent using shades of green. */
     --color-accent-200: var(--color-green-200);
     --color-accent-600: var(--color-green-600);
