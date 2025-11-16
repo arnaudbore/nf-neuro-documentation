@@ -20,6 +20,7 @@
     "pnpm": "10.15.0",
     "remark-rehype": "11.1.2",
     "sharp": "0.32.6",
+    "starlight-sidebar-topics": "^0.6.2",
     "tailwindcss": "4.1.12",
     "uninstall": "0.0.0",
     "unplugin-icons": "22.2.0"
