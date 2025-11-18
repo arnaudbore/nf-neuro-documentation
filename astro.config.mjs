@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightSidebarTopics from 'starlight-sidebar-topics'
 import starlightDocSearch from '@astrojs/starlight-docsearch';
+import starlightLinksValidator from 'starlight-links-validator'
 import Icons from 'unplugin-icons/vite';
 import tailwindcss from '@tailwindcss/vite';
 
@@ -48,6 +49,7 @@ export default defineConfig({
                 { icon: "github", label: "nf-neuro", href: 'https://github.com/nf-neuro/modules.git'}
             ],
             plugins: [
+                starlightLinksValidator(),
                 starlightDocSearch({
                     appId: 'GKBR5BGCDX',
                     apiKey: 'eb61244400b86ad87e5aae7c4a9077a8',
