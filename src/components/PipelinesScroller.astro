@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import PipelineCard from './PipelineCard.astro';
+import PipelineCardClient from './PipelineCardClient.astro';
 
 const pipelinesEntries = await getCollection('pipelines');
 const pipelines = pipelinesEntries.map(entry => entry.data);
@@ -16,12 +16,12 @@ const pipelines = pipelinesEntries.map(entry => entry.data);
     <div class="flex gap-8 w-max animate-infinite-scroll scroller">
         <div class="flex gap-8">
             {pipelines.map((pipeline) => (
-                <PipelineCard pipeline={pipeline} class="flex-shrink-0 pipeline-card-hover" />
+                <PipelineCardClient pipeline={pipeline} class="flex-shrink-0 pipeline-card-hover" />
             ))}
         </div>
         <div class="flex gap-8" aria-hidden="true">
             {pipelines.map((pipeline) => (
-                <PipelineCard pipeline={pipeline} class="flex-shrink-0 pipeline-card-hover" />
+                <PipelineCardClient pipeline={pipeline} class="flex-shrink-0 pipeline-card-hover" />
             ))}
         </div>
     </div>

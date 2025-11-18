@@ -173,7 +173,9 @@ export default defineConfig({
                         label: 'Pipelines',
                         link: 'pipelines',
                         icon: 'seti:pipeline',
-                        items: []
+                        items: [
+                            { label: 'Add you pipeline', slug: 'pipelines/submit' }
+                        ]
                     }
                 ])
             ]
