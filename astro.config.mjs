@@ -35,6 +35,13 @@ export default defineConfig({
                         defer: true,
                     },
                 },
+                {
+                    tag: 'meta',
+                    attrs: {
+                        name: 'algolia-site-verification',
+                        content: '21A44C24369F49EF'
+                    },
+                },
             ],
             customCss: [
                 './src/styles/custom.css',
