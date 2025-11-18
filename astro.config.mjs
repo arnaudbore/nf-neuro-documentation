@@ -17,8 +17,8 @@ export default defineConfig({
             plugins: [
                 starlightDocSearch({
                     appId: 'GKBR5BGCDX',
-                    apiKey: '2f0672163146bcd35654de2527809b92',
-                    indexName: 'scilusio'
+                    apiKey: 'eb61244400b86ad87e5aae7c4a9077a8',
+                    indexName: 'nf-neuro-io'
                 })
             ],
             logo: {
