@@ -150,7 +150,7 @@ In this tutorial, you need to remove a directory, like this `./modules/[...]`.
 
 The purpose of adding this module is to denoise the DWI image before computing the DTI metrics.
 To do this, simply repeat the sequence of sub-steps seen in 
-[**Part 3: Use and configure a nf-neuro module**](/pipeline/tutorial_step_3).
+[**Part 3: Use and configure a nf-neuro module**](/pipeline/4-tutorial_step_3).
 
 <Steps>
 
@@ -296,7 +296,7 @@ To do this, simply repeat the sequence of sub-steps seen in
     <li>`.map{ it + [[]] }`:  Adds an empty list `([])` to each input tuple.</li>
     
         After joining, we use `map` to transform each item in the channel, and adding an empty list `[[]]`,
-        for the optional mask input. The `map` operation is similar to the one we did for the DTI module in [**Part 2**](/pipeline/tutorial_step_2).
+        for the optional mask input. The `map` operation is similar to the one we did for the DTI module in [**Part 2**](/pipeline/3-tutorial_steps_1-2).
     </html>
     :::
 </Steps>

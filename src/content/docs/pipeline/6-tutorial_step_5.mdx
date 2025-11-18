@@ -163,7 +163,7 @@ The subworkflow will be installed in the `./subworkflows/nf-neuro/` directory.
 
 ### 2. Add new data in the input pipeline structure
 
-To include a T1w image in the pipeline, we will follow the same approach from [**Part 2**](/pipeline/tutorial_step_2) as we did for the DWI images.
+To include a T1w image in the pipeline, we will follow the same approach from [**Part 2**](/pipeline/3-tutorial_steps_1-2) as we did for the DWI images.
 The required steps are:  
 
     <Steps>
@@ -202,7 +202,7 @@ The required steps are:
 
 #### a. Use the subworkflow as follow in your `main.nf`:
 
-    ```nextflow
+    ```bash
     PREPROC_T1( input_channel(s) )
     ```
 
@@ -228,7 +228,7 @@ The required steps are:
 
     Using the `Channel.empty()` function for optional inputs, you can define the input structure for `PREPROC_T1` using the newly fetched `inputs.anat` channel.
 
-    ```nextflow
+    ```bash
 
         PREPROC_T1(
             inputs.anat,
@@ -268,7 +268,7 @@ disable all other options (set to `false`).
 
 Add the following lines to your `nextflow.config` file after `params.output = 'result'`:
 
-```Nextflow
+```bash
 // ** Subworkflow PREPROC T1 **
 params.preproc_t1_run_denoising = true
 params.preproc_t1_run_N4 = false
@@ -285,7 +285,7 @@ Note that the `denoising` module does not require any specific parameters, so it
 Now, update your `nextflow.config` file by adding the specific options for the subworkflow in the process section 
 as follows after the DENOISING_MPPCA block:
 
-```nextflow
+```bash
     withName: "BETCROP_SYNTHBET" {
         memory = "4G"
         ext.nocsf = false
@@ -300,7 +300,7 @@ as follows after the DENOISING_MPPCA block:
 
 <Tabs>
 <TabItem label="Expected main.nf">
-```nextflow
+```bash
 #!/usr/bin/env nextflow
 
 include { RECONST_DTIMETRICS } from './modules/nf-neuro/reconst/dtimetrics/main'
@@ -381,7 +381,7 @@ workflow {
 ```
 </TabItem>
 <TabItem label="Expected nextflow.config">
-```nextflow
+```bash
 profiles {
     docker {
         docker.enabled          = true

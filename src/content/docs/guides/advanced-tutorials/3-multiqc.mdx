@@ -52,7 +52,7 @@ You need to work on a pipeline that follows the `nf-core` conventions and have a
 For the purpose of this walkthrough, we will reused the completed pipeline from the tutorial [Your pipeline from A to Z](/pipeline/2-tutorial_explore).
 
 :::caution[If you did not complete the pipeline creation tutorial]
-Don't worry! You can still catch up by following the [setup section](/pipeline/1-setup/).
+Don't worry! You can still catch up by following the [setup section](/pipeline/1-setup).
 Once you are setup, we prepared a branch that contains the complete pipeline. To access it,
 checkout the `full_tutorial` branch.
 ```bash
@@ -231,8 +231,8 @@ Your MultiQC module is now up-and-running for our neuroimaging needs!
 ## Create a subject MultiQC report
 
 :::note[If you do not already have QC within your modules]
-The instructions for how to create QC files within your modules have
-been deeply covered in the [create your own module tutorial](/contribute/create-your-module/2-main/#including-quality-control-qc-steps-within-your-module).
+This tutorial takes into account you have QC files published by your module,
+using the code snippet availabe in the [module contribution tutorial](/contribute/create-your-module/7-quality-control).
 The current section will assume QC is already available within your
 modules, and will cover how to generate and collect QC files during
 pipeline execution. 
@@ -420,7 +420,7 @@ together. Since we do not want to mix up our subjects in our MultiQC report, we
 will use the [**`.groupTuple`**](https://www.nextflow.io/docs/latest/reference/operator.html#grouptuple)
 operator. Since all of our files are tagged with metadata (under the `meta` value),
 this will group every files with identical metadata, ensuring we do not have mixed
-up reports. Finally, as we saw in the [MultiQC inputs](#multiqc-inputs) section,
+up reports. Finally, as we saw in the [MultiQC inputs](#1-modify-the-multiqc-inputs) section,
 the module expect a `tuple val(meta), path(files)`. To make sure we respect this input
 definition, we will flatten the files into a single list. Add the following
 lines at the end of our main workflow definition:
