@@ -81,9 +81,14 @@ export default defineConfig({
                         items: [
                             'api/configuration',
                             {
-                                label: 'Categories',
-                                autogenerate: { directory: 'api/categories' },
+                                label: 'Subworkflows',
+                                autogenerate: { directory: 'api/subworkflows' },
                                 collapsed: true
+                            },
+                            {
+                                label: 'Modules',
+                                autogenerate: { directory: 'api/modules', collapsed: true },
+                                collapsed: false
                             }
                         ]
                     },

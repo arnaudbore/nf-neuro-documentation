@@ -9,7 +9,7 @@ import RemoteIcon from '~icons/codicon/remote';
 import ExtensionsIcon from '~icons/codicon/extensions';
 import CoffeeIcon from '~icons/codicon/coffee';
 import WaitIcon from '~icons/ic/round-access-time';
-import CommandOutputs from '../../../components/CommandOutputs.astro';
+import CommandOutputs from '../../../../components/CommandOutputs.astro';
 import { Steps } from '@astrojs/starlight/components';
 import { Tabs, TabItem } from '@astrojs/starlight/components';
 
@@ -49,7 +49,7 @@ A citation to **nf-neuro** for this tutorial is also appreciated:
 
 You need to work on a pipeline that follows the `nf-core` conventions and have access to the [`nf-core` tools commands](https://nf-co.re/docs/nf-core-tools/).
 
-For the purpose of this walkthrough, we will reused the completed pipeline from the tutorial [Your pipeline from A to Z](/pipeline/2-tutorial_explore/).
+For the purpose of this walkthrough, we will reused the completed pipeline from the tutorial [Your pipeline from A to Z](/pipeline/2-tutorial_explore).
 
 :::caution[If you did not complete the pipeline creation tutorial]
 Don't worry! You can still catch up by following the [setup section](/pipeline/1-setup/).
@@ -491,7 +491,7 @@ empty list if we do not have them.
 
    Your resulting MultiQC report should look similar to this:
 
-   ![Raw MultiQC Report](../../../assets/multiqc/multiqc_raw_report.png)
+   ![Raw MultiQC Report](../../../../assets/multiqc/multiqc_raw_report.png)
 
     As you can see, there isn't much in the report for now other than our generated
     screenshot. Hopefully, we can customize this section to add proper heading, description, 
@@ -666,7 +666,7 @@ Change your `./main.nf` file.
 
    Your newly generated MultiQC report should now look like this:
 
-   ![MultiQC Clean Report](../../../assets/multiqc/multiqc_clean_report.png)
+   ![MultiQC Clean Report](../../../../assets/multiqc/multiqc_clean_report.png)
 
     As you can see, the report is now much cleaner and informative!
 
