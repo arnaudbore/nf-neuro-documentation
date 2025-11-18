@@ -18,7 +18,7 @@ export default defineConfig({
                 starlightDocSearch({
                     appId: 'GKBR5BGCDX',
                     apiKey: 'eb61244400b86ad87e5aae7c4a9077a8',
-                    indexName: 'nf-neuro-io'
+                    indexName: 'nf-neuro'
                 })
             ],
             logo: {
