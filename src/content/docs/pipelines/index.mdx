@@ -4,7 +4,7 @@ description: Discover the pipelines powered by nf-neuro
 ---
 
 import { getCollection } from 'astro:content';
-import PipelineCard from '../../components/PipelineCard.astro';
+import PipelineCardClient from '../../../components/PipelineCardClient.astro';
 
 export const pipelines = await getCollection('pipelines');
 
@@ -16,7 +16,7 @@ and we'll guide you through the very simple process !
 
 <div class="not-content grid gap-6 mt-8">
   {pipelines.map((entry) => (
-    <PipelineCard pipeline={entry.data} variant="detailed" />
+    <PipelineCardClient pipeline={entry.data} variant="detailed" />
   ))}
 </div>
 
