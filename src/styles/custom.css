@@ -24,6 +24,10 @@
 	margin-left: 2rem;
 }
 
+starlight-file-tree li {
+	list-style-type: none !important;
+}
+
 .sl-markdown-content > ol :where(ul) li {
 	list-style-position: inside;
 }
