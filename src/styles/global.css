@@ -5,6 +5,17 @@
 @import "tailwindcss/utilities.css" layer(utilities);
 
 @theme inline {
+    --animate-infinite-scroll: infinite-scroll 30s linear infinite;
+
+    @keyframes infinite-scroll {
+        from {
+            transform: translateX(0);
+        }
+        to {
+            transform: translateX(-50%);
+        }
+    }
+
     /* On the website, we accent using shades of green. */
     --color-accent-200: var(--color-green-200);
     --color-accent-600: var(--color-green-600);
@@ -19,4 +30,10 @@
     --color-gray-700: #2e3d2f;
     --color-gray-800: #1d2b1e;
     --color-gray-900: #141a14;
+}
+
+@layer components {
+    .scroller:has(.pipeline-card-hover:hover) {
+        animation-play-state: paused !important;
+    }
 }

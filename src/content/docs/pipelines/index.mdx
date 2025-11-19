@@ -1,0 +1,22 @@
+---
+title: Pipelines
+description: Discover the pipelines powered by nf-neuro
+---
+
+import { getCollection } from 'astro:content';
+import PipelineCardClient from '../../../components/PipelineCardClient.astro';
+
+export const pipelines = await getCollection('pipelines');
+
+:::tip[Sumbit your pipeline to nf-neuro !]
+Have you built a pipeline using the [nf-neuro](https://github.com/nf-neuro) ecosystem ? Add it
+to our listing of pipeline to improve its visibility. Simply follow the [insctructions here](/pipelines/submit).
+:::
+
+<div class="not-content grid gap-6 mt-8">
+  {pipelines.map((entry) => (
+    <PipelineCardClient pipeline={entry.data} variant="detailed" />
+  ))}
+</div>
+
+---

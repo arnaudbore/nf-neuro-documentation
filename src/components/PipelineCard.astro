@@ -1,0 +1,307 @@
+---
+/**
+ * PipelineCard Component
+ * 
+ * Displays information about a pipeline from a GitHub repository.
+ * 
+ * Variants:
+ * - compact: Horizontal card, fixed height, basic info (for scroller)
+ * - detailed: Vertical card, full metadata with stats, contributors, license, etc.
+ * 
+ * @param pipeline - { name: string, organisation: string }
+ * @param variant - 'compact' | 'detailed' (default: 'compact')
+ */
+
+import { fetchRepository, fetchContributors, fetchLatestRelease, getLicenseUrl } from '../utils/github-api';
+import { fetchReadmeDescription } from '../utils/readme-parser';
+import { detectPipelineLogo } from '../utils/pipeline-logo';
+import Icon from '../../node_modules/@astrojs/starlight/user-components/Icon.astro';
+import StarIcon from '~icons/codicon/star-full';
+import RepoForkedIcon from '~icons/codicon/repo-forked';
+import ClockIcon from '~icons/codicon/history';
+import TagIcon from '~icons/codicon/tag';
+import LicenseIcon from '~icons/codicon/law';
+import PersonIcon from '~icons/codicon/person';
+
+interface Props {
+  pipeline: {
+    name: string;
+    organisation: string;
+    documentation?: string;
+  };
+  variant?: 'compact' | 'detailed';
+  class?: string;
+}
+
+const { pipeline, variant = 'compact', class: className } = Astro.props;
+const { name, organisation, documentation } = pipeline;
+
+// Construct URLs
+const repositoryName = `${organisation}/${name}`;
+const githubUrl = `https://github.com/${repositoryName}`;
+const defaultDocsUrl = `https://${organisation}.github.io/${name}`;
+const docsUrl = documentation || defaultDocsUrl;
+
+// Check if documentation exists
+let hasDocumentation = false;
+if (docsUrl) {
+  try {
+    const response = await fetch(docsUrl, { method: 'HEAD' });
+    hasDocumentation = response.ok;
+  } catch (error) {
+    hasDocumentation = false;
+  }
+}
+
+// Fetch common data for all variants
+let repoData: Awaited<ReturnType<typeof fetchRepository>> | null = null;
+let description = '';
+let topics: string[] = [];
+let logo = await detectPipelineLogo(organisation, name);
+
+// Fetch detailed data only for detailed variant
+let contributors: Awaited<ReturnType<typeof fetchContributors>> = [];
+let latestRelease: Awaited<ReturnType<typeof fetchLatestRelease>> = null;
+let licenseUrl = '';
+
+try {
+  repoData = await fetchRepository(organisation, name);
+  topics = repoData.topics || [];
+  description = await fetchReadmeDescription(organisation, name);
+  
+  // Conditionally fetch detailed metadata
+  if (variant === 'detailed') {
+    [contributors, latestRelease] = await Promise.all([
+      fetchContributors(organisation, name),
+      fetchLatestRelease(organisation, name),
+    ]);
+    
+    // Get the license URL (prefer repository file over generic URL)
+    if (repoData?.license) {
+      licenseUrl = await getLicenseUrl(organisation, name, repoData.default_branch, repoData.license.url);
+    }
+  }
+} catch (error) {
+  console.error(`Failed to fetch data for ${repositoryName}:`, error);
+}
+
+// Get main contributor (first in sorted list)
+const mainContributor = contributors[0];
+
+// Use documentation URL if it exists, otherwise use repository URL
+const primaryUrl = hasDocumentation ? docsUrl : githubUrl;
+---
+
+{variant === 'compact' ? (
+  <!-- Compact Variant: Horizontal card for scroller -->
+  <a 
+    href={primaryUrl}
+    class:list={["pipeline-card flex gap-6 p-6 border border-gray-300 dark:border-gray-700 rounded-lg hover:shadow-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-all h-48 min-w-[600px] max-w-[800px] no-underline", className]}
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <!-- Logo Section -->
+    <div class="pipeline-logo flex-shrink-0 w-32 h-32 flex items-center justify-center">
+      {logo.type === 'light-dark' ? (
+        <>
+          <img 
+            src={logo.lightUrl} 
+            alt={`${name} logo`}
+            class="w-full h-full object-contain dark:hidden"
+          />
+          <img 
+            src={logo.darkUrl} 
+            alt={`${name} logo`}
+            class="w-full h-full object-contain hidden dark:block"
+          />
+        </>
+      ) : logo.type === 'single' ? (
+        <img 
+          src={logo.url} 
+          alt={`${name} logo`}
+          class="w-full h-full object-contain"
+        />
+      ) : null}
+    </div>
+
+    <!-- Content Section -->
+    <div class="pipeline-content flex-1 flex flex-col gap-3 min-w-0">
+      <!-- Repository Name / Title -->
+      <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100">
+        {repositoryName}
+      </h3>
+
+      <!-- Description -->
+      <div class="pipeline-description text-sm font-bold text-gray-700 dark:text-gray-300 line-clamp-3">
+        {description || repoData?.description || 'No description available'}
+      </div>
+
+      <!-- Topics -->
+      {topics.length > 0 && (
+        <div class="pipeline-topics flex flex-wrap gap-2">
+          {topics.map((topic) => (
+            <span 
+              class="px-2 py-1 text-xs rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
+            >
+              {topic}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+  </a>
+) : (
+  <!-- Detailed Variant: Full metadata display -->
+  <div class:list={["pipeline-card-detailed border border-gray-300 dark:border-gray-700 rounded-lg p-6 hover:shadow-lg transition-shadow", className]}>
+    <!-- Header with Logo and Title -->
+    <div class="flex gap-6 mb-6">
+      <!-- Logo Section -->
+      <div class="pipeline-logo flex-shrink-0 w-28 h-28 flex items-center justify-center">
+        {logo.type === 'light-dark' ? (
+          <>
+            <img 
+              src={logo.lightUrl} 
+              alt={`${name} logo`}
+              class="w-full h-full object-contain dark:hidden"
+            />
+            <img 
+              src={logo.darkUrl} 
+              alt={`${name} logo`}
+              class="w-full h-full object-contain hidden dark:block"
+            />
+          </>
+        ) : logo.type === 'single' ? (
+          <img 
+            src={logo.url} 
+            alt={`${name} logo`}
+            class="w-full h-full object-contain"
+          />
+        ) : null}
+      </div>
+
+      <!-- Title and Links -->
+      <div class="flex-1 flex flex-col gap-3">
+        <!-- First Row: Title with Icons and Metadata -->
+        <div class="flex items-start justify-between gap-4">
+          <a 
+            href={primaryUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-2xl font-bold text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors no-underline"
+          >
+            {repositoryName}
+          </a>
+          <div class="flex items-center gap-4 text-sm flex-wrap">
+            {latestRelease && (
+              <a 
+                href={latestRelease.html_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-1 text-blue-600 dark:text-blue-400 hover:underline whitespace-nowrap"
+                title="Latest release"
+              >
+                <TagIcon class="inline-icon" aria-hidden />
+                {latestRelease.tag_name}
+              </a>
+            )}
+            
+            {repoData?.license && (
+              <a 
+                href={licenseUrl || repoData.license.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-1 text-gray-700 dark:text-gray-300 hover:underline whitespace-nowrap"
+                title={repoData.license.name}
+              >
+                <LicenseIcon class="inline-icon" aria-hidden />
+                {repoData.license.spdx_id}
+              </a>
+            )}
+
+            {mainContributor && (
+              <a 
+                href={mainContributor.html_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-1 text-gray-700 dark:text-gray-300 hover:underline whitespace-nowrap"
+                title="Main contributor"
+              >
+                <PersonIcon class="inline-icon" aria-hidden />
+                {mainContributor.login}
+              </a>
+            )}
+
+            <div class="flex gap-3">
+              {hasDocumentation && (
+                <a 
+                  href={docsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  title="View Documentation"
+                >
+                  <Icon name="document" size="1.5rem" />
+                </a>
+              )}
+              <a 
+                href={githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+                title="View on GitHub"
+              >
+                <Icon name="github" size="1.5rem" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats and Topics Row -->
+        {repoData && (
+          <div class="flex items-center justify-between gap-4">
+            <div class="flex gap-4 text-sm text-gray-600 dark:text-gray-400">
+              <span class="flex items-center gap-1">
+                <StarIcon class="inline-icon" aria-hidden />
+                {repoData.stargazers_count}
+              </span>
+              <span class="flex items-center gap-1" title="Forks">
+                <RepoForkedIcon class="inline-icon" aria-hidden />
+                {repoData.forks_count}
+              </span>
+              <span class="flex items-center gap-1" title="Last updated">
+                <ClockIcon class="inline-icon" aria-hidden />
+                {new Date(repoData.updated_at).toLocaleDateString()}
+              </span>
+            </div>
+            
+            {topics.length > 0 && (
+              <div class="flex flex-wrap gap-2 justify-end">
+                {topics.map((topic) => (
+                  <span 
+                    class="px-3 py-1 text-sm rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
+                  >
+                    {topic}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="text-gray-700 dark:text-gray-300">
+      {description || repoData?.description || 'No description available'}
+    </div>
+  </div>
+)}
+
+<style>
+  .pipeline-description {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+</style>

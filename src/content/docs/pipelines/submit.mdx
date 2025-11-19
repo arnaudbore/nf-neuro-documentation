@@ -1,0 +1,104 @@
+---
+title: Showcase your pipeline
+description: Add your pipeline to the nf-neuro website showcase
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { FileTree } from '@astrojs/starlight/components';
+
+## Requirements
+
+In order to limit the content you need to edit and we need to host, the showcase **automatically scrubs**
+your pipeline repository using the *Github API*. Here is a list of the content it will search for you can act
+upon :
+
+<Steps>
+
+1. **Your pipeline logo** (if you have once, else we use the boilerplate Github logo).
+
+   Here you have some options, but there are a few **requirements**. Its name must be **prefixed by the name
+   of your pipeline** and end with the suffix `-logo`. It must be in **PNG** format. You also need to place
+   it in a directory named `assets`. Your setup should look like this for a single logo to use across themes :
+
+   <FileTree>
+   - root
+      - assets
+         - \<pipeline_name\>-logo.png
+   </FileTree>
+   
+   However, the website uses a **light** and a **dark** theme for users convenience. If your logo contains
+   colors that do not render well in a given theme, you can provide **one for each** :
+
+   <FileTree>
+   - root
+      - assets
+         - \<pipeline_name\>-light-logo.png
+         - \<pipeline_name\>-dark-logo.png
+   </FileTree>
+
+2. **Github Topics**. They appear as keywords in bullet in the detailled view.
+
+3. An **excerpt of the README**, displayed as a description.
+
+   :::tip
+   We only extract a **few sentences from the first paragraph**, excluding badges, titles, tables
+   and images. **Make it count !**
+   :::
+
+4. The **license** users must follow when running the pipeline.
+
+5. The **tag of the last release**.
+
+</Steps>
+
+## Include your pipeline in the showcase
+
+### Using the browser
+<Steps>
+
+1. If you don't **own a fork** of the [website repository](https://github.com/nf-neuro/website),
+   naviguate to it in your browser and create one
+
+   ![clone documentation](../../../assets/images/documentation-clone.png)
+
+2. On your forked repository page, naviguate to `src/content/pipelines` and click on the
+   **Add file** button in the top right corner and select the **Create new file** option.
+
+   ![add pipeline file](../../../assets/images/documentation-add-file.png)
+   
+3. Name the new file `<pipeline name>.yaml` and edit its content to reflect the following :
+   ```yaml
+   name: <name of the pipeline>
+   organisation: <name of the host organisation on Github>
+   documentation: <(optional) link to the pipeline's documentation website>
+   ```
+
+4. Commit your changes to a new branch on your fork, and open an **Pull Request** on the
+   [main website repository](https://github.com/nf-neuro/website/pulls)
+
+</Steps>
+
+### Using a local clone
+
+<Steps>
+
+1. If you don't **own a fork** of the [website repository](https://github.com/nf-neuro/website),
+   naviguate to it in your browser, create one and clone it locally.
+
+   ![clone documentation](../../../assets/images/documentation-clone.png)
+
+2. Create a new branch to host the code modifications.
+
+3. Add a new file in `src/content/pipelines`, named `<pipeline name>.yaml` and edit its content
+   to reflect the following :
+   ```yaml
+   name: <name of the pipeline>
+   organisation: <name of the host organisation on Github>
+   documentation: <(optional) link to the pipeline's documentation website>
+   ```
+
+4. Commit your changes, push the branch and open an **Pull Request** on the
+   [main website repository](https://github.com/nf-neuro/website/pulls)
+
+</Steps>
