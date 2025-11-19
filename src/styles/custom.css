@@ -53,6 +53,6 @@
 }
 
 starlight-tabs {
-	background-color: var(--color-gray-700);
+	background-color: light-dark(var(--color-gray-100), var(--color-gray-700));
 	padding: 10px;
 }
